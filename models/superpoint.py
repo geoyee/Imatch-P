@@ -136,7 +136,7 @@ class SuperPoint(nn.Layer):
     descriptors = F.normalize(descriptors, p=2, axis=1)
     # Extract descriptors
     descriptors = [sample_descriptors(k[None], d[None], 8)[0]
-                    for k, d in zip(keypoints, descriptors)]
+                   for k, d in zip(keypoints, descriptors)]
     return {
         "keypoints": keypoints,
         "scores": scores,
