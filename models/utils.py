@@ -36,8 +36,8 @@ def make_matching_plot_fast(im0, im1, kpts0, kpts1, matches0, matches1,
             cv2.circle(out, (x + margin + W0, y), 1, white, -1,
                        lineType=cv2.LINE_AA)
     # add lines
-    mkpts0 = kpts0[(matches0 > -1).numpy()]
-    mkpts1 = kpts1[(matches1 > -1).numpy()]
+    mkpts0 = np.array(kpts0)[(matches0 > -1).numpy()]
+    mkpts1 = np.array(kpts1)[(matches1 > -1).numpy()]
     mkpts0, mkpts1 = np.round(mkpts0).astype(int), np.round(mkpts1).astype(int)
     for (x0, y0), (x1, y1) in zip(mkpts0, mkpts1):
         white = (242, 242, 242)
