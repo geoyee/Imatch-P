@@ -44,8 +44,8 @@ def sample_descriptors(keypoints, descriptors, s=8):
     """ Interpolate descriptors at keypoint locations """
     b, c, h, w = descriptors.shape
     keypoints = keypoints - s / 2 + 0.5
-    keypoints /= paddle.to_tensor([(w * s - s / 2 - 0.5), (h * s - s / 2 - 0.5)],
-                                  ).astype(keypoints.dtype)[None]
+    keypoints /= paddle.to_tensor(
+        [(w * s - s / 2 - 0.5), (h * s - s / 2 - 0.5)]).astype(keypoints.dtype)[None]
     keypoints = keypoints*2 - 1  # normalize to (-1, 1)
     descriptors = F.grid_sample(
         descriptors, keypoints.reshape((b, 1, -1, 2)))

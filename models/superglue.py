@@ -117,8 +117,8 @@ def log_optimal_transport(scores, alpha, iters):
     couplings = paddle.concat([paddle.concat([scores, bins0], -1),
                                paddle.concat([bins1, alpha], -1)], 1)
     norm = - (ms + ns).log()
-    log_mu = paddle.concat([norm.expand([m]).unsqueeze(-1), ns.log()[None] + norm])
-    log_nu = paddle.concat([norm.expand([n]).unsqueeze(-1), ms.log()[None] + norm])
+    log_mu = paddle.concat([norm.expand((m, )).unsqueeze(-1), ns.log()[None] + norm])
+    log_nu = paddle.concat([norm.expand((n, )).unsqueeze(-1), ms.log()[None] + norm])
     log_mu = log_mu[None].expand((b, -1, 1))
     log_nu = log_nu[None].expand((b, -1, 1)).transpose((0, 2, 1))
     Z = log_sinkhorn_iterations(couplings, log_mu, log_nu, iters)

@@ -4,11 +4,9 @@ import torch
 from models import SuperPoint, SuperGlue
 
 
-fes = [SuperPoint(), SuperGlue()]
-pth_paths = ["models/weights/superpoint_v1.pth", 
-             "models/weights/superglue_outdoor.pth"]
-
-for fe, pth_path in zip(fes, pth_paths):
+if __name__ == "__main__":
+    fe = SuperGlue()  # SuperPoint()
+    pth_path = "models/weights/superglue_outdoor.pth"  # "models/weights/superpoint_v1.pth"        
     pp = fe.state_dict()
     tt = torch.load(pth_path)
     ntt = dict()
@@ -27,7 +25,11 @@ for fe, pth_path in zip(fes, pth_paths):
     dst = dict()
     for p, t in zip(sorted(pp.keys()), sorted(ntt.keys())):
         if p == t:
-            dst[p] = np.array(ntt[t].detach().cpu())
+            if p == "bin_score":
+                dst[p] = np.array([ntt[t].detach().cpu()])
+                print(dst[p])
+            else:
+                dst[p] = np.array(ntt[t].detach().cpu())
         else:
             print(f"{p} cant write.")
     print("convert finished.")
