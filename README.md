@@ -1,8 +1,14 @@
 # Imatch-P
 A demo using SuperGlue and SuperPoint to do the image matching task based PaddlePaddle.
 
-![R0VY05D227)ES1~IX UA~%A](https://user-images.githubusercontent.com/71769312/158402217-e0ba5590-3d9d-4910-84cb-aab39d145365.png)
+![下载](https://user-images.githubusercontent.com/71769312/158503692-1ffb04fa-47f5-4517-b4b6-aaea6437db97.png)
 
-## USE
+## How to use
+``` shell
+cd Imatch-P/
+python demo.py
+```
 
-Please use `demo.py`.
+## Reference
+- [https://github.com/magicleap/SuperPointPretrainedNetwork](https://github.com/magicleap/SuperPointPretrainedNetwork)
+- [https://github.com/magicleap/SuperGluePretrainedNetwork](https://github.com/magicleap/SuperGluePretrainedNetwork)
